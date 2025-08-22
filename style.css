@@ -1,11 +1,106 @@
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg  {
+    border-collapse:collapse;
+    border-spacing:0;
+    margin-left:auto;   /* 表全体を中央寄せ */
+    margin-right:auto;
+}
+.tg td{
+    border-color:black;
+    border-style:solid;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+    text-align:center;       /* セル内を中央揃え */
+    vertical-align:middle;   /* 上下中央 */
+}
+.tg th{
+    border-color:black;
+    border-style:solid;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+    text-align:center;       /* ヘッダも中央揃え */
+    vertical-align:middle;
+}
+.tg .tg-1wig{font-weight:bold;}
+.tg .tg-0lax{}
+.tg .tg-0pky{border-color:inherit;}
 .tg thead tr {
     background-color: #d3d3d3;
+}
+
+
+/* ページ全体用CSSを追記 */
+body {
+    font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #fdfdfd;
+}
+
+header {
+    margin-top: 100px;
+    margin-bottom: 60px;
+}
+
+header h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+header h2 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+header h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: normal;
+}
+
+.info {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+main {
+    text-align: left;      /* 左揃えにする */
+    width: 80%;            /* ページ幅の80%に制限すると見やすい */
+    margin: 0 auto;        /* 左右中央に配置 */
+}
+
+main h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+main h2 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+main h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+main li {
+    font-size: 18px;         /* 文字サイズ */
+    line-height: 1.6;        /* 行間 */
+    margin-bottom: 8px;      /* 各項目の間隔 */
 }

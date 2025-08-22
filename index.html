@@ -1,19 +1,274 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2025年秋季音響学会　1-R-25　音声デモページ</title>
   <link rel="stylesheet" href="style.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
+
 <body>
   <header>
-        <h1>日本語多数話者音声コーパスを用いた混合感情音声合成の性能向上</h1>
-        <h3>Performance improvement of mixed emotion speech synthesis using a Japanese multi-speaker speech corpus</h3>
-        <h3>☆坂田一成, 小坂哲夫 (山形大院・理工学研)</h3>
+    <h1>深層学習を用いた歌声自動採譜における歌唱者の影響</h1>
+    <h3>The influence of singers on automatic singing transcription using deep learning.</h3>
+    <h2>☆田﨑晃基, 小坂哲夫 (山形大院・理工学研)</h2>
+    <h3>Tasaki Koki, Kosaka Tetsuo (Yamagata Univ.)</h3>
   </header>
+
+  <div class="info">
+    <p>2025年9月10日</p>
+    <p>日本音響学会第154回(2025年秋季)研究発表会</p>
+  </div>
+
   <main>
-    <h1>ようこそ！</h1>
+    <hr style="margin:50px 0; border:1px solid #aaa;">
+
+    <h1>◇ Abstract</h1>
+    <li>歌声は, 歌唱者によって声質や歌唱表現が異なるため, すべての歌唱者に対応した自動歌声採譜モデルの作成は難しいと考えられる. </li>
+    <li>しかし, 多くの自動歌声採譜の研究では, <b>学習に用いた歌唱者と用いていない歌唱者にどういった関係性があるのか調査されていない. </b></li>
+    <li>本研究では, 自動採譜モデルの学習に用いた歌唱者(クローズ)と, 用いられていない歌唱者(オープン)にデータを分けることで, <b>歌唱者の違いが採譜精度にどういった影響を与えるのか調査する.</b></li>
+    <li>自動採譜の入力には,バンド音源から音源分離を経て抽出した歌声音源を使用する. </li>
+    <li> 結果として, <b>自動採譜モデル学習に評価と同じ歌唱者を用いることで, 採譜精度が向上することを確認した. </b></li>
+
+    <hr style="margin:50px 0; border:1px solid #aaa;">
+    
+    <h1>◇ Results</h1>
+    <h2>- 音源分離評価指標 -</h2>
+    <h3>SDR(Signal-to-Distortion Ratio)</h3>
+    <li>分離された音源が目標音源にどの程度近いのかを数値で示したものであり,<b>数値が高いほど分離精度が高いことを示している.</b></li>
+    <li>次式で定義される. ここで,\(s\)は目標音響信号,\(\hat{s}\)は分離音源の音響信号. $$ \mathrm{SDR} = 10 \log_{10} \frac{\| s \|^2}{\| s - \hat{s} \|^2} $$</li>
+    <h2>- 自動採譜評価指標 -</h2>
+    <h3>自動採譜の結果は以下の3つの評価基準を用いたF値を算出</h3>
+    <li>Frmae : 10msに分割した<b>フレームごと</b>に正解楽譜と予測楽譜の音程を比較</li>
+    <li>Note : <b>音符ごと</b>に正解楽譜と予測楽譜の音程と発音時刻を比較</li>
+    <li>Note w/offset : <b>音符ごと</b>に正解楽譜と予測楽譜の音程と発音時刻と消音時刻を比較</li>
+    <h2>- 結果 - </h2>
+    <h3>評価結果は各歌唱者ごとに3曲用意したテスト楽曲に対する平均値である</h3>
+    <table class="tg"><thead>
+    <tr>
+      <th class="tg-0lax">   <br>評価歌唱者</th>
+      <th class="tg-0lax">   <br>状態</th>
+      <th class="tg-0lax">   <br>SDR[dB] (↑)</th>
+      <th class="tg-0lax">   <br>Frame[%] (↑)</th>
+      <th class="tg-0lax">   <br>Note[%] (↑)</th>
+      <th class="tg-0lax">   <br>Note w/offset[%] (↑)</th>
+      </tr></thead>
+    <tbody>
+    <tr>
+      <td class="tg-0lax" rowspan="2">   <br>A</td>
+      <td class="tg-0lax">   <br>close</td>
+      <td class="tg-0lax" rowspan="2">   <br>21.73</td>
+      <td class="tg-0lax">   <br><b>79.59</b></td>
+      <td class="tg-0lax">   <br><b>78.87</b></td>
+      <td class="tg-0lax">   <br><b>56.49</b></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">   <br>open</td>
+      <td class="tg-0lax">   <br>67.16</td>
+      <td class="tg-0lax">   <br>56.19</td>
+      <td class="tg-0lax">   <br>31.40</td>
+    </tr>
+    <tr>
+      <td class="tg-0lax" rowspan="2">   <br>B</td>
+      <td class="tg-0lax">   <br>close</td>
+      <td class="tg-0lax" rowspan="2">   <br>22.37</td>
+      <td class="tg-0lax">   <br><b>85.30</b></td>
+      <td class="tg-0lax">   <br><b>84.76</b></td>
+      <td class="tg-0lax">   <br><b>53.16</b></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">   <br>open</td>
+      <td class="tg-0lax">   <br>76.34</td>
+      <td class="tg-0lax">   <br>71.31</td>
+      <td class="tg-0lax">   <br>41.93</td>
+    </tr>
+    <tr>
+      <td class="tg-0lax" rowspan="2">   <br>C</td>
+      <td class="tg-0lax">   <br>close</td>
+      <td class="tg-0lax" rowspan="2">   <br>18.47</td>
+      <td class="tg-0lax">   <br><b>79.91</b></td>
+      <td class="tg-0lax">   <br><b>71.22</b></td>
+      <td class="tg-0lax">   <br><b>56.64</b></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">   <br>open</td>
+      <td class="tg-0lax">   <br>75.32</td>
+      <td class="tg-0lax">   <br>55.99</td>
+      <td class="tg-0lax">   <br>31.55</td>
+    </tr>
+    <tr>
+      <td class="tg-0lax" rowspan="2">   <br>D</td>
+      <td class="tg-0lax">   <br>close</td>
+      <td class="tg-0lax" rowspan="2">   <br>18.61</td>
+      <td class="tg-0lax">   <br>63.36</td>
+      <td class="tg-0lax">   <br>40.89</td>
+      <td class="tg-0lax">   <br><b>23.60</b></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">   <br>open</td>
+      <td class="tg-0lax">   <br><b>65.08</b></td>
+      <td class="tg-0lax">   <br><b>45.50</b></td>
+      <td class="tg-0lax">   <br>22.02</td>
+    </tr>
+    <tr>
+      <td class="tg-0lax" rowspan="2">   <br>E</td>
+      <td class="tg-0lax">   <br>close</td>
+      <td class="tg-0lax" rowspan="2">   <br>24.41</td>
+      <td class="tg-0lax">   <br><b>92.14</b></td>
+      <td class="tg-0lax">   <br><b>89.84</b></td>
+      <td class="tg-0lax">   <br><b>78.40</b></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">   <br>open</td>
+      <td class="tg-0lax">   <br>91.18</td>
+      <td class="tg-0lax">   <br>84.31</td>
+      <td class="tg-0lax">   <br>71.18</td>
+    </tr>
+    <tr>
+      <td class="tg-0lax" rowspan="2">   <br>F</td>
+      <td class="tg-0lax">   <br>close</td>
+      <td class="tg-0lax" rowspan="2">   <br>18.98</td>
+      <td class="tg-0lax">   <br><b>91.91</b></td>
+      <td class="tg-0lax">   <br><b>85.13</b></td>
+      <td class="tg-0lax">   <br><b>73.36</b></td>
+    </tr>
+    <tr>
+      <td class="tg-0lax">   <br>open</td>
+      <td class="tg-0lax">   <br>85.24</td>
+      <td class="tg-0lax">   <br>68.87</td>
+      <td class="tg-0lax">   <br>54.48</td>
+    </tr>
+    </tbody></table>
+
+    <hr style="margin:50px 0; border:1px solid #aaa;">
+
+    <h1>◇ Audio Samples</h1>
+    <h3>テスト用楽曲の中から各歌唱者1曲ずつ採譜例を掲載,左から順に以下のようになっている.</h3>
+    <li>歌声音源 : 採譜対象である歌声のみが収録されている音源</li>
+    <li>混合音源 : 歌声音源に別楽曲の伴奏を重畳し,作成された伴奏つき歌声音源</li>
+    <li>分離歌声音源 : 混合音源を音源分離モデルに入力することで得られた出力結果,これを<b>自動採譜モデルの評価に使用</b></li>
+    <li>クローズ採譜結果 : <b>歌唱者が学習されている</b>自動採譜モデルでの採譜結果</li>
+    <li>オープン採譜結果 : <b>歌唱者が学習されていない</b>自動採譜モデルでの採譜結果</li>
+
+    <h2>歌唱者A</h2>
+    <table class="tg"><thead>
+    <tr>
+      <th class="tg-0lax">   <br>歌声音源</th>
+      <th class="tg-0lax">   <br>混合音源</th>
+      <th class="tg-0lax">   <br>分離歌声音源</th>
+      <th class="tg-0lax">   <br>クローズ採譜結果</th>
+      <th class="tg-0lax">   <br>オープン採譜結果</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td class="tg-0lax">   <audio src="./vocal/singerA.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./mixture/singerA.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./separation/singerA.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./close_wav/singerA.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./open_wav/singerA.wav" controls preload="auto"></audio></td>
+    </tr>
+    </tbody></table>
+
+    <h2>歌唱者B</h2>
+    <table class="tg"><thead>
+    <tr>
+      <th class="tg-0lax">   <br>歌声音源</th>
+      <th class="tg-0lax">   <br>混合音源</th>
+      <th class="tg-0lax">   <br>分離歌声音源</th>
+      <th class="tg-0lax">   <br>クローズ採譜結果</th>
+      <th class="tg-0lax">   <br>オープン採譜結果</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td class="tg-0lax">   <audio src="./vocal/singerB.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./mixture/singerB.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./separation/singerB.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./close_wav/singerB.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./open_wav/singerB.wav" controls preload="auto"></audio></td>
+    </tr>
+    </tbody></table>
+
+    <h2>歌唱者C</h2>
+    <table class="tg"><thead>
+    <tr>
+      <th class="tg-0lax">   <br>歌声音源</th>
+      <th class="tg-0lax">   <br>混合音源</th>
+      <th class="tg-0lax">   <br>分離歌声音源</th>
+      <th class="tg-0lax">   <br>クローズ採譜結果</th>
+      <th class="tg-0lax">   <br>オープン採譜結果</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td class="tg-0lax">   <audio src="./vocal/singerC.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./mixture/singerC.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./separation/singerC.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./close_wav/singerC.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./open_wav/singerC.wav" controls preload="auto"></audio></td>
+    </tr>
+    </tbody></table>
+
+    <h2>歌唱者D</h2>
+    <table class="tg"><thead>
+    <tr>
+      <th class="tg-0lax">   <br>歌声音源</th>
+      <th class="tg-0lax">   <br>混合音源</th>
+      <th class="tg-0lax">   <br>分離歌声音源</th>
+      <th class="tg-0lax">   <br>クローズ採譜結果</th>
+      <th class="tg-0lax">   <br>オープン採譜結果</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td class="tg-0lax">   <audio src="./vocal/singerD.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./mixture/singerD.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./separation/singerD.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./close_wav/singerD.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./open_wav/singerD.wav" controls preload="auto"></audio></td>
+    </tr>
+    </tbody></table>
+
+    <h2>歌唱者E</h2>
+    <table class="tg"><thead>
+    <tr>
+      <th class="tg-0lax">   <br>歌声音源</th>
+      <th class="tg-0lax">   <br>混合音源</th>
+      <th class="tg-0lax">   <br>分離歌声音源</th>
+      <th class="tg-0lax">   <br>クローズ採譜結果</th>
+      <th class="tg-0lax">   <br>オープン採譜結果</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td class="tg-0lax">   <audio src="./vocal/singerE.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./mixture/singerE.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./separation/singerE.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./close_wav/singerE.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./open_wav/singerE.wav" controls preload="auto"></audio></td>
+    </tr>
+    </tbody></table>
+
+    <h2>歌唱者F</h2>
+    <table class="tg"><thead>
+    <tr>
+      <th class="tg-0lax">   <br>歌声音源</th>
+      <th class="tg-0lax">   <br>混合音源</th>
+      <th class="tg-0lax">   <br>分離歌声音源</th>
+      <th class="tg-0lax">   <br>クローズ採譜結果</th>
+      <th class="tg-0lax">   <br>オープン採譜結果</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td class="tg-0lax">   <audio src="./vocal/singerF.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./mixture/singerF.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./separation/singerF.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./close_wav/singerF.wav" controls preload="auto"></audio></td>
+      <td class="tg-0lax">   <audio src="./open_wav/singerF.wav" controls preload="auto"></audio></td>
+    </tr>
+    </tbody></table>
   </main>
 </body>
 </html>
